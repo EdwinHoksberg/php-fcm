@@ -1,0 +1,15 @@
+language: php
+php:
+  - '7.0'
+  - '7.1'
+  - nightly
+
+install:
+  - travis_retry composer install --no-interaction --no-suggest
+
+script:
+  - mkdir -p build/logs
+  - vendor/bin/phpunit -c phpunit.dist.xml --testdox
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
