@@ -7,7 +7,26 @@ Installation with composer:
 composer require edwinhoksberg/php-fcm
 ```
 
-## Documentation
+## Quickstart
+```php
+// Instantiate the client with the project api_token and sender_id.
+$client = new \Fcm\FcmClient($apiToken, $senderId);
+
+// Instantiate the push notification request object.
+$notification = new \Fcm\Push\Notification();
+
+// Enhance the notification object with our custom options.
+$notification
+    ->addRecipient($deviceId)
+    ->setTitle('Hello from php-fcm!')
+    ->setBody('Notification body')
+    ->addData('key', 'value');
+
+// Send the notification to the Firebase servers for further handling.
+$client->send($notification);
+```
+
+## Full documentation
 Read the documentation [here](https://php-fcm.readthedocs.io/en/latest/) or look in the [docs](docs/) directory.
 
 ## Tests
