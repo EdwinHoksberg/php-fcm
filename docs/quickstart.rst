@@ -32,5 +32,8 @@ When you instantiate a new Firebase Cloud Messaging object, pass the `Server Key
 .. code-block:: php
 
     <?php
+    
+    // Load composer
+    require 'vendor/autoload.php';
 
     $client = new \Fcm\FcmClient(/* Server Key */, /* Sender ID */);
