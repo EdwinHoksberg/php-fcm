@@ -9,6 +9,11 @@ composer require edwinhoksberg/php-fcm
 
 ## Quickstart
 ```php
+<?php
+
+// Load composer
+require 'vendor/autoload.php';
+
 // Instantiate the client with the project api_token and sender_id.
 $client = new \Fcm\FcmClient($apiToken, $senderId);
 
