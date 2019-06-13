@@ -10,6 +10,9 @@ manage groups of devices and message topics using Google Firebase Cloud Messagin
 .. code-block:: php
 
     <?php
+    
+    // Load composer
+    require 'vendor/autoload.php';
 
     // Instantiate the client with the project api_token and sender_id.
     $client = new \Fcm\FcmClient($apiToken, $senderId);
