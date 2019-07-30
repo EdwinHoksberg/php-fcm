@@ -19,7 +19,13 @@ Notification message
     $notification = new \Fcm\Push\Notification();
     $notification
         ->setTitle('Hello from php-fcm!')
-        ->addRecipient($deviceId);
+        ->addRecipient($deviceId)
+        ->setColor('#20F037')
+        ->setSound("default")
+        ->setIcon("myIcon.png");
+    // custom sound and custom icon must be in app package
+    //     - custom sound file must be in /res/raw/
+    //     - custom icon file must be in drawable resource, if not set, FCM displays launcher icon in app manifest
 
     // Shortcut function:
     // $notification = $client->pushNotification('The title', 'The body', $deviceId);
