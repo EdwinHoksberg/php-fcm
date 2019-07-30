@@ -24,10 +24,13 @@ class Notification implements Request
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '')
     {
         $this->title = $title;
         $this->body = $body;
+        $this->sound = $sound;
+        $this->color = $color;
+        $this->icon = $icon;
 
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
@@ -57,7 +60,43 @@ class Notification implements Request
 
         return $this;
     }
+    
+    /**
+     * @param string $sound
+     *
+     * @return $this
+     */
+    public function setSound(string $sound): self
+    {
+        $this->sound = $sound;
 
+        return $this;
+    } 
+    
+    /**
+     * @param string $icon
+     *
+     * @return $this
+     */
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * @param string $color
+     *
+     * @return $this
+     */
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+    
     /**
      * @inheritdoc
      */
@@ -99,6 +138,10 @@ class Notification implements Request
 
         $request['notification']['title'] = $this->title;
         $request['notification']['body'] = $this->body;
+        $request['notification']['sound'] = $this->sound;
+        $request['notification']['icon'] = $this->icon;
+        $request['notification']['color'] = $this->color;
+        
 
         return $request;
     }
