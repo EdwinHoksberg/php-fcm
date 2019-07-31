@@ -24,7 +24,7 @@ class Notification implements Request
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', integer $badge = 0, string $tag = '', string $subtitle = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '')
     {
         $this->title = $title;
         $this->body = $body;
@@ -105,7 +105,7 @@ class Notification implements Request
      *
      * @return $this
      */
-    public function setBadge(string $badge): self
+    public function setBadge(int $badge): self
     {
         $this->badge = $badge;
 
@@ -180,10 +180,11 @@ class Notification implements Request
         $request['notification']['sound'] = $this->sound;
         $request['notification']['icon'] = $this->icon;
         $request['notification']['color'] = $this->color;
-        $request['notification']['badge'] = $this->badge;
         $request['notification']['tag'] = $this->tag;
         $request['notification']['subtitle'] = $this->subtitle;
-        
+        if ($this->badge>0) {
+            $request['notification']['badge'] = $this->badge;
+        }        
         return $request;
     }
 }
