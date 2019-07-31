@@ -5,7 +5,7 @@ Sending Messages
 There are two different types of messages Firebase can support, `Notification messages` and `Data messages`.
 Read `here <https://firebase.google.com/docs/cloud-messaging/concept-options>`_ for more information.
 
-Notification message to deviceIDs <to> <registration_ids>
+Notification message to deviceIDs <to> <registration_ids> <deviceGroupID>
 ====================
 
 `FCM automatically displays the message to end-user devices on behalf of the client app. Notification messages have a predefined set of user-visible keys and an optional data payload of custom key-value pairs.`
@@ -20,6 +20,7 @@ Notification message to deviceIDs <to> <registration_ids>
     $notification
         ->addRecipient($deviceId1)
         ->addRecipient($deviceId2)
+        ->addRecipient($arrayIDs)
         ->setTitle('Hello from php-fcm!')
         ->setColor('#20F037')
         ->setSound("default")
@@ -30,7 +31,7 @@ Notification message to deviceIDs <to> <registration_ids>
 
     $response = $client->send($notification);
 
-Example deviceID <to> <registration_ids> response:
+Example deviceID <to> <registration_ids> <deviceGroupID> response:
 
 .. code-block:: text
 
@@ -105,6 +106,9 @@ Notification sending options
           // devicegroupID (string)
           // registeredIDs (array_of_IDs)
           // topicID ('/topics/myTopicID')
+          
+          // note: deviceID/deviceGroupID/registerIDs can be mixed/matched in same notification
+          // note: topicID can not be mixed/matched with other IDs types in same notification
 
 Notification options <topics> <deviceID> <registered_ids>
 ====================
