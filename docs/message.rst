@@ -5,7 +5,7 @@ Sending Messages
 There are two different types of messages Firebase can support, `Notification messages` and `Data messages`.
 Read `here <https://firebase.google.com/docs/cloud-messaging/concept-options>`_ for more information.
 
-Notification message <deviceID> <registrer_ids>
+Notification message to deviceIDs <to> <registration_ids>
 ====================
 
 `FCM automatically displays the message to end-user devices on behalf of the client app. Notification messages have a predefined set of user-visible keys and an optional data payload of custom key-value pairs.`
@@ -30,7 +30,7 @@ Notification message <deviceID> <registrer_ids>
 
     $response = $client->send($notification);
 
-Example <deviceID> <register_ids> response:
+Example deviceID <to> <registration_ids> response:
 
 .. code-block:: text
 
