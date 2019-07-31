@@ -96,6 +96,16 @@ array(1) {
     string(19) "InvalidRegistration"
   }
 
+
+Notification sending options
+====================
+     * addRecipient 
+          // recipient can be ONE of four types
+          // deviceID (string)
+          // devicegroupID (string)
+          // registeredIDs (array_of_IDs)
+          // topicID ('/topics/myTopicID')
+
 Notification options <topics> <deviceID> <registered_ids>
 ====================
 
