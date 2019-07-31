@@ -24,13 +24,16 @@ class Notification implements Request
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', integer $badge = 0, string $tag = '', string $subtitle = '')
     {
         $this->title = $title;
         $this->body = $body;
         $this->sound = $sound;
         $this->color = $color;
         $this->icon = $icon;
+        $this->badge = $badge;
+        $this->tag = $tag;
+        $this->subtitle = $subtitle;
 
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
@@ -98,6 +101,42 @@ class Notification implements Request
     }
     
     /**
+     * @param string badge
+     *
+     * @return $this
+     */
+    public function setBadge(string $badge): self
+    {
+        $this->badge = $badge;
+
+        return $this;
+    }
+    
+    /**
+     * @param string $tag
+     *
+     * @return $this
+     */
+    public function setTag(string $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle
+     *
+     * @return $this
+     */
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+    
+    /**
      * @inheritdoc
      */
     public function getBody(): array
@@ -141,8 +180,10 @@ class Notification implements Request
         $request['notification']['sound'] = $this->sound;
         $request['notification']['icon'] = $this->icon;
         $request['notification']['color'] = $this->color;
+        $request['notification']['badge'] = $this->badge;
+        $request['notification']['tag'] = $this->tag;
+        $request['notification']['subtitle'] = $this->subtitle;
         
-
         return $request;
     }
 }
