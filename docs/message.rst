@@ -100,6 +100,9 @@ Example <topics> response:
 
 Notification sending options
 ====================
+
+.. code-block:: text
+
      * addRecipient 
           // recipient can be ONE of four types
           // deviceID (string)
@@ -112,8 +115,9 @@ Notification sending options
 
 Notification options <topics> <deviceID> <registered_ids>
 ====================
-
 `iOS, Android currently Supported options for notifications`
+
+.. code-block:: text
 
      iOS only:
      * setBbadge (int)
