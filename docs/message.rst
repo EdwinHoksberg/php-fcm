@@ -87,15 +87,15 @@ Example <topics> response:
 
 .. code-block:: text
 
-array(1) {
-    'message_id' =>  // this is a successful response to a topic notification
-    int(154231004164960%c5f39c08c5f39c543)
-  }
+    array(1) {
+        'message_id' =>  // this is a successful response to a topic notification
+        int(154231004164960%c5f39c08c5f39c543)
+      }
   
-array(1) {
-    'error' =>  // this is an error response to a topic notification
-    string(19) "InvalidRegistration"
-  }
+    array(1) {
+        'error' =>  // this is an error response to a topic notification
+        string(19) "InvalidRegistration"
+      }
 
 
 Notification sending options
