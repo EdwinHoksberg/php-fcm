@@ -19,7 +19,7 @@ Notification message to deviceIDs <to> <registration_ids> <deviceGroupID>
     $notification = new \Fcm\Push\Notification();
     $notification
         ->addRecipient($deviceId1)
-        ->addRecipient($deviceId2)
+        ->addRecipient($deviceGroupID)
         ->addRecipient($arrayIDs)
         ->setTitle('Hello from php-fcm!')
         ->setColor('#20F037')
