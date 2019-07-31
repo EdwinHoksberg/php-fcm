@@ -185,6 +185,6 @@ class Notification implements Request
         if ($this->badge>0) {
             $request['notification']['badge'] = $this->badge;
         }        
-        return $request;
+        return $request; 
     }
 }
