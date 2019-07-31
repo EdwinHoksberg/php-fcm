@@ -18,8 +18,9 @@ Notification message <deviceID> <registrer_ids>
 
     $notification = new \Fcm\Push\Notification();
     $notification
+        ->addRecipient($deviceId1)
+        ->addRecipient($deviceId2)
         ->setTitle('Hello from php-fcm!')
-        ->addRecipient($deviceId)
         ->setColor('#20F037')
         ->setSound("default")
         ->setBadge(11);
@@ -91,7 +92,7 @@ array(1) {
   }
   
 array(1) {
-    'error' =>  // this is a error response to a topic notification
+    'error' =>  // this is an error response to a topic notification
     string(19) "InvalidRegistration"
   }
 
@@ -99,13 +100,14 @@ Notification options <topics> <deviceID> <registered_ids>
 ====================
 
 `iOS, Android currently Supported options for notifications`
+
      iOS only:
      * setBbadge (int)
      * setSubtitle (string)
 
      Android only:
      * setTag (string)
-     * setColor (string (#hex color format))
+     * setColor (string (hex #rrggbb color format))
      * setIcon (string)
          // custom icon file must be in app itself
          // icon must be drawable resource, if not set, FCM displays launcher icon in app manifest
