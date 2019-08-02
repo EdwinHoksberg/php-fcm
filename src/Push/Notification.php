@@ -8,7 +8,11 @@ use Fcm\Request;
 class Notification implements Request
 {
     use Push;
-
+    /**
+     * @var array
+     */
+    private $data;
+    
     /**
      * @var string
      */
@@ -20,11 +24,41 @@ class Notification implements Request
     private $body;
 
     /**
+     * @var string
+     */
+    private $sound;
+
+    /**
+     * @var string
+     */
+    private $icon;
+    
+    /**
+     * @var string
+     */
+    private $color;
+
+    /**
+     * @var string
+     */
+    private $tag;    
+    
+    /**
+     * @var string
+     */
+    private $subtitle;
+
+    /**
+     * @var int
+     */
+    private $badge;
+    
+    /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [])
     {
         $this->title = $title;
         $this->body = $body;
@@ -34,7 +68,16 @@ class Notification implements Request
         $this->badge = $badge;
         $this->tag = $tag;
         $this->subtitle = $subtitle;
-
+        
+        if (!empty($data)) {
+            if (\is_array($data)) {
+                $this->addDataArray = $data;
+            } 
+            if (\is_string($data)) {
+                $this->addData($data) ;
+            }
+        }
+        
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
         }
@@ -135,7 +178,19 @@ class Notification implements Request
 
         return $this;
     }
-    
+
+    /**
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return Push
+     */
+    public function addDataArray(array $data): self
+    {
+        $this->data = $data;
+        return $this;
+    }
+
     /**
      * @inheritdoc
      */
@@ -148,7 +203,9 @@ class Notification implements Request
         if (!empty($this->recipients) && !empty($this->topics)) {
             throw new NotificationException('Must either specify a recipient or topic, not more then one.');
         }
-
+        if (empty($this->data)) {
+            throw new NotificationException('Data should not be empty for a Data Notification.');
+        }
         $request = [];
 
         if (!empty($this->recipients)) {
@@ -171,10 +228,6 @@ class Notification implements Request
             });
         }
 
-        if (!empty($this->data)) {
-            $request['data'] = $this->data;
-        }
-
         $request['notification']['title'] = $this->title;
         $request['notification']['body'] = $this->body;
         $request['notification']['sound'] = $this->sound;
@@ -184,7 +237,11 @@ class Notification implements Request
         $request['notification']['subtitle'] = $this->subtitle;
         if ($this->badge>0) {
             $request['notification']['badge'] = $this->badge;
-        }        
+        }
+        
+        if (!empty($this->data)) {
+            $request['data'] = $this->data;
+        }
         return $request; 
     }
 }
