@@ -148,13 +148,30 @@ Notification options <topics> <deviceID> <registered_ids>
      
 Notification DATA options <topics> <deviceID> <registered_ids>
 ====================
-`iOS, Android currently Supported options for notifications`
+`Client app is responsible for processing data messages. Data messages require custom key-value pairs that your app will understand.`
 
 .. code-block:: text
 
     * addData("key","value") - add data key/values one at a time
-    * addDataArray(array()) - add data as a prebuilt object array
-     
+    * addDataArray(array_of_keyValues) - add data as a prebuilt object array
+        //     $fcmData = array(
+        //          'action' => 2,
+        //          'dataTitle' => "This is my subject line",
+        //          'dataMsg' => "This is the body of my message
+        
+        // Example, In a cordova based app using `cordova-plugin-firebase`
+        window.FirebasePlugin.onNotificationOpen(function(payload) {
+            // if there is a payload it will be in payload object
+            if (payload.action == 1) { // email verification confirmation
+              setDB("user_emailVerify",payload.user_emailVerify) ;
+              alert("Thank you, your email address has now been verified") ;
+            } else if (payload.action == 2) {  // display gen message
+              alert(payload.dataTitle+ "\n" +payload.dataMsg) ;
+            }
+        }, function(error) {
+          console.error(error);
+        }) ;
+
 
 Data Only message
 ============
