@@ -24,7 +24,8 @@ Notification message to deviceIDs <to> <registration_ids> <deviceGroupID>
         ->setTitle('Hello from php-fcm!')
         ->setColor('#20F037')
         ->setSound("default")
-        ->setBadge(11);
+        ->setBadge(11)
+        ->addData("key","value");
 
     // Shortcut function:
     // $notification = $client->pushNotification('The title', 'The body', $deviceId);
@@ -76,7 +77,8 @@ Notification message <topics>
         ->setTitle('Hello myTopicName Members')
         ->setColor('#20F037')
         ->setSound("default")
-        ->setIcon("myIcon.png");
+        ->setIcon("myIcon.png")
+        ->addDataArray($myObjArray);
 
     // Shortcut function:
     // $notification = $client->pushNotification('The title', 'The body', $deviceId);
@@ -143,8 +145,18 @@ Notification options <topics> <deviceID> <registered_ids>
      *** future: body_loc_args
      *** future: title_loc_key
      *** future: title_loc_args
+     
+Notification DATA options <topics> <deviceID> <registered_ids>
+====================
+`iOS, Android currently Supported options for notifications`
 
-Data message
+.. code-block:: text
+
+    * addData("key","value") - add data key/values one at a time
+    * addDataArray(array()) - add data as a prebuilt object array
+     
+
+Data Only message
 ============
 
 `Client app is responsible for processing data messages. Data messages have only custom key-value pairs.`
