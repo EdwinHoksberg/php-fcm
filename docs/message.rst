@@ -146,6 +146,9 @@ Notification options <topics> <deviceID> <registered_ids>
      *** future: title_loc_key
      *** future: title_loc_args
      
+     //NOTE: You can mix and match iOS and Android only options in same notification
+     //NOTE: if iOS/Android don't recognize an option used in the other platform, that option is simply discarded/ignored.
+     
 Notification DATA options <topics> <deviceID> <registered_ids>
 ====================
 `Client app is responsible for processing data messages. Data messages require custom key-value pairs that your app will understand.`
