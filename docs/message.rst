@@ -171,6 +171,9 @@ Notification DATA options <topics> <deviceID> <registered_ids>
         }, function(error) {
           console.error(error);
         }) ;
+        
+        // NOTE: you can mix/use ->addDataArray(array()) and ->addData("key","value") in same notification
+        // NOTE: pass in preset array, then add a few extra custom key/values.
 
 
 Data Only message
