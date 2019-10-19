@@ -128,11 +128,17 @@ Notification options <topics> <deviceID> <registered_ids>
      Android only:
      * setTag (string)
      * setColor (string (hex #rrggbb color format))
+         // In Android 6 and lower - this the background color of the icon image when you pull down on the status bar messages
+         // In Android 7 and greater - this is the color of the icon itself when you pull down on the status bar messages
      * setIcon (string)
          // custom icon file must be in app itself
          // icon must be drawable resource, if not set, FCM displays launcher icon in app manifest
+         // for consistency across Android OS versions(5.0 - 10.0), use a material design, transparent icon
+         // if using icon in `drawable-XYdi` folders, use icon name without file extension, ie: ->setIcon('myIcon')
+         // if using icon from other location, you must specificy the file extension, ie: ->setIcon('www/images/thisIcon.png') 
          // for more info, see: https://github.com/arnesson/cordova-plugin-firebase/issues/764
-     *** future: android_channel_id
+    
+    *** future: android_channel_id
 
      Both:
      * setTitle (string)
@@ -140,6 +146,7 @@ Notification options <topics> <deviceID> <registered_ids>
      * setSound (string)
          // custom sound must be in the app itself
          // custom sound file must be in /res/raw/
+
      *** future: click_action
      *** future: body_loc_key
      *** future: body_loc_args
