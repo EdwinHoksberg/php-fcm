@@ -67,6 +67,8 @@ To get around this, you will need to modify the `guzzlehttp` code base.  But und
 
 Additionally, once the above modification is applied, you will need your processing script to check for JSON key `error` to process the proper error message.  IE:
 
+.. code-block:: php
+
   $info = new \Fcm\Device\Info($deviceID, true);
   $response =  $client->send($info);
   if (array_key_exists('error',$response)) {
