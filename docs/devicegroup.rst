@@ -59,8 +59,8 @@ Example response:
       string(119) "APA91bE8asD44A2gjSUJqRp8Ym4pe7TlrlrSLVkKRBdvkoWOFmusdc87934ASDURl8xaUbXXdKC5DRkUssYtkOl_lnWXT7gF0vO9E666XeL1qJs02FsunJ4"
     }
 
-Removing devies from a group
-============================
+Removing devices from a group
+=============================
 
 .. code-block:: php
 
