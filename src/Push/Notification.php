@@ -7,6 +7,7 @@ use Fcm\Request;
 
 class Notification implements Request
 {
+    use Push ;
     
     /**
      * @var string
