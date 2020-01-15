@@ -67,7 +67,7 @@ class Notification implements Request
         
         if (!empty($data)) {
             $this->data = $data;
-        }
+        } 
         
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
