@@ -66,13 +66,7 @@ class Notification implements Request
         $this->subtitle = $subtitle;
         
         if (!empty($data)) {
-            if (\is_array($data)) {
-                $this->addDataArray = $data;
-            } 
-            //if (\is_string($data)) {
-            else {
-                $this->addData = $data ;
-            }
+            $this->data = $data;
         }
         
         if (!empty($recipient)) {
@@ -173,18 +167,6 @@ class Notification implements Request
     {
         $this->subtitle = $subtitle;
 
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     *
-     * @return Push
-     */
-    public function addDataArray(array $data): self
-    {
-        $this->data = $data;
         return $this;
     }
 
