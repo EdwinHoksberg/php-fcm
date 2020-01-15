@@ -70,7 +70,7 @@ class Notification implements Request
                 $this->addDataArray = $data;
             } 
             if (\is_string($data)) {
-                $this->addData($data) ;
+                $this->addData = $data ;
             }
         }
         
