@@ -54,6 +54,20 @@ trait Push
 
         return $this;
     }
+    
+    /**
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return Push
+     */
+    public function addDataArray(array $data): self
+    {
+        if (\is_array($data)) {
+            $this->data = array_merge($this->data, $data);
+        }
+        return $this;
+    }    
 
     /**
      * @param string $name
