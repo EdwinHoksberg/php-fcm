@@ -61,10 +61,12 @@ trait Push
      *
      * @return Push
      */
-    public function addDataArray(array $data): self
+    public function addDataArray($dataArray): self
     {
-        if (\is_array($data)) {
-            $this->data = array_merge($this->data, $data);
+        if (\is_array($dataArray && array_values($dataArray !== $dataArray)) {
+            $this->data = array_merge($this->data, $dataArray);
+        } else {
+            throw new NotificationException('Data must be an asscoiative array of ("key" => "value") pairs.');        
         }
         return $this;
     }    
