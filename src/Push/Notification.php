@@ -69,7 +69,8 @@ class Notification implements Request
             if (\is_array($data)) {
                 $this->addDataArray = $data;
             } 
-            if (\is_string($data)) {
+            //if (\is_string($data)) {
+            else {
                 $this->addData = $data ;
             }
         }
