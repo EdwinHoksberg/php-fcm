@@ -182,9 +182,11 @@ class Notification implements Request
         if (!empty($this->recipients) && !empty($this->topics)) {
             throw new NotificationException('Must either specify a recipient or topic, not more then one.');
         }
+        /*
         if (empty($this->data)) {
             throw new NotificationException('Data should not be empty for a Data Notification.');
         }
+        */
         $request = [];
 
         if (!empty($this->recipients)) {
