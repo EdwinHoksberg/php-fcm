@@ -39,6 +39,10 @@ Run the unit tests with PHPUnit:
 ```bash
 vendor/bin/phpunit -c phpunit.dist.xml
 ```
+Before the first time you run them, you may need to run:
+```bash
+composer install
+```
 
 ## License
 [MIT](LICENSE.md)
