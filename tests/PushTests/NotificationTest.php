@@ -14,12 +14,17 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'to' => 'device_1',
-            'data' => [
-                'key' => 'value',
-            ],
             'notification' => [
                 'title' => 'Test title',
                 'body'  => 'A small body as an example',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
             ],
         ];
 
