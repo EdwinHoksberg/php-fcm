@@ -14,12 +14,17 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'to' => 'device_1',
-            'data' => [
-                'key' => 'value',
-            ],
             'notification' => [
                 'title' => 'Test title',
                 'body'  => 'A small body as an example',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
             ],
         ];
 
@@ -67,7 +72,8 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $notification
             ->setTitle('Test title')
             ->addRecipient('device_1')
-            ->addRecipient(['device_2', 'device_3']);
+            ->addRecipient(['device_2', 'device_3'])
+            ->addData('key', 'value');
 
         $expected = [
             'registration_ids' => [
@@ -78,6 +84,14 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             'notification' => [
                 'title' => 'Test title',
                 'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
             ],
         ];
 
@@ -91,13 +105,26 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $notification
             ->setTitle('Test title')
             ->addTopic(['news', 'weather'])
-            ->addTopic('personal');
+            ->addTopic('personal')
+            ->addData('key', 'value');
 
         $expected = [
             'condition' => "'news' in topics||'weather' in topics||'personal' in topics",
             'notification' => [
                 'title' => 'Test title',
                 'body'  => '',
+            ],
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
             ],
         ];
 
@@ -117,14 +144,19 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
             'data' => [
                 'key' => 'value',
                 'name' => 'notification',
                 'test' => 'data',
-            ],
-            'notification' => [
-                'title' => 'Test title',
-                'body'  => '',
             ],
         ];
 
@@ -143,6 +175,11 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             'notification' => [
                 'title' => 'Sample title',
                 'body'  => 'Sample body',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
             ],
         ];
 

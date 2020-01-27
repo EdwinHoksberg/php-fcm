@@ -7,8 +7,8 @@ use Fcm\Request;
 
 class Notification implements Request
 {
-    use Push;
-
+    use Push ;
+    
     /**
      * @var string
      */
@@ -20,15 +20,55 @@ class Notification implements Request
     private $body;
 
     /**
+     * @var string
+     */
+    private $sound;
+
+    /**
+     * @var string
+     */
+    private $icon;
+    
+    /**
+     * @var string
+     */
+    private $color;
+
+    /**
+     * @var string
+     */
+    private $tag;    
+    
+    /**
+     * @var string
+     */
+    private $subtitle;
+
+    /**
+     * @var int
+     */
+    private $badge;
+    
+    /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [])
     {
         $this->title = $title;
         $this->body = $body;
-
+        $this->sound = $sound;
+        $this->color = $color;
+        $this->icon = $icon;
+        $this->badge = $badge;
+        $this->tag = $tag;
+        $this->subtitle = $subtitle;
+        
+        if (!empty($data)) {
+            $this->data = $data;
+        } 
+        
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
         }
@@ -57,6 +97,78 @@ class Notification implements Request
 
         return $this;
     }
+    
+    /**
+     * @param string $sound
+     *
+     * @return $this
+     */
+    public function setSound(string $sound): self
+    {
+        $this->sound = $sound;
+
+        return $this;
+    } 
+    
+    /**
+     * @param string $icon
+     *
+     * @return $this
+     */
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * @param string $color
+     *
+     * @return $this
+     */
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+    
+    /**
+     * @param string badge
+     *
+     * @return $this
+     */
+    public function setBadge(int $badge): self
+    {
+        $this->badge = $badge;
+
+        return $this;
+    }
+    
+    /**
+     * @param string $tag
+     *
+     * @return $this
+     */
+    public function setTag(string $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle
+     *
+     * @return $this
+     */
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
 
     /**
      * @inheritdoc
@@ -70,7 +182,11 @@ class Notification implements Request
         if (!empty($this->recipients) && !empty($this->topics)) {
             throw new NotificationException('Must either specify a recipient or topic, not more then one.');
         }
-
+        /*
+        if (empty($this->data)) {
+            throw new NotificationException('Data should not be empty for a Data Notification.');
+        }
+        */
         $request = [];
 
         if (!empty($this->recipients)) {
@@ -93,13 +209,20 @@ class Notification implements Request
             });
         }
 
+        $request['notification']['title'] = $this->title;
+        $request['notification']['body'] = $this->body;
+        $request['notification']['sound'] = $this->sound;
+        $request['notification']['icon'] = $this->icon;
+        $request['notification']['color'] = $this->color;
+        $request['notification']['tag'] = $this->tag;
+        $request['notification']['subtitle'] = $this->subtitle;
+        if ($this->badge>0) {
+            $request['notification']['badge'] = $this->badge;
+        }
+        
         if (!empty($this->data)) {
             $request['data'] = $this->data;
         }
-
-        $request['notification']['title'] = $this->title;
-        $request['notification']['body'] = $this->body;
-
-        return $request;
+        return $request; 
     }
 }
