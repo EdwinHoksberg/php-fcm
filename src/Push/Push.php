@@ -63,7 +63,7 @@ trait Push
      */
     public function addDataArray($dataArray): self
     {
-        if (\is_array($dataArray) && array_values($dataArray !== $dataArray)) {
+        if (is_array($dataArray)) {
             $this->data = array_merge($this->data, $dataArray) ;
         } else {
             throw new NotificationException('Data must be an asscoiative array of ("key" => "value") pairs.');        
