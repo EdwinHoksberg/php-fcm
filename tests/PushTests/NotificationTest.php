@@ -393,4 +393,63 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
     }
     
 
+    /** @test */
+    public function it_generates_a_correct_notification_object_setting_color()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addData('key', 'value');
+
+        $notification->setColor('my color');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => 'my color',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
+
+    /** @test */
+    public function it_generates_a_correct_notification_object_setting_icon()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addData('key', 'value');
+
+        $notification->setIcon('my icon');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => 'my icon',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
 }
