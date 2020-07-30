@@ -33,22 +33,39 @@ class FcmClient
     private $senderId;
 
     /**
+     * @var array
+     */
+    public $options;
+
+    /**
      * @param string $apiToken
      * @param string $senderId
+     * @param array $options
      */
-    public function __construct(string $apiToken, string $senderId)
+    public function __construct(string $apiToken, string $senderId, array $options = Array())
     {
         $this->apiToken  = $apiToken;
         $this->senderId = $senderId;
+
+        if ( isset( $options["http_errors"] ) ) {
+            $options["http_errors"] = (bool)$options["http_errors"];
+        } else {
+            $options["http_errors"] = false;
+        }
+
+        $this->options = $options;
+
+        
     }
 
     /**
      * @param string $apiToken
      * @param string $projectId
+     * @param array $options
      *
      * @return FcmClient
      */
-    public static function create(string $apiToken, string $projectId): FcmClient
+    public static function create(string $apiToken, string $projectId, array $options = Array()): FcmClient
     {
         return new self($apiToken, $projectId);
     }
@@ -119,7 +136,21 @@ class FcmClient
             'headers' => [
                 'Authorization' => 'key='.$this->apiToken,
                 'project_id' => $this->senderId,
-            ]
+            ],
+            'http_errors' => $this->options["http_errors"],
         ]);
     }
+
+    /**
+     * @param array $options
+     * 
+     * @return bool
+     */
+    public function setGuzzleClient(array $options): bool
+    {
+        $this->options = $options;
+        return true;
+    }
+
+
 }
