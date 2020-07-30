@@ -58,14 +58,8 @@ class FcmClient
      *
      * @return array
      */
-    public function send(Request $request, array $arguments): array
+    public function send(Request $request): array
     {
-        $default = [
-            'json' => $request->getBody(),
-            'http_errors' => false
-        ];
-
-        $options = is_array($arguments) && isset($arguments) ? $arguments : $default;
         // Build guzzle api client.
         $client = $this->getGuzzleClient();
 
@@ -73,7 +67,9 @@ class FcmClient
         $url = $request->getUrl();
 
         // Create and send the request.
-        $response = $client->post($url, $options);
+        $response = $client->post($url, [
+            'json' => $request->getBody()
+        ]);
 
         // Decode the response body from json to a plain php array.
         $body = json_decode($response->getBody()->getContents(), true);
