@@ -49,12 +49,18 @@ class Notification implements Request
      */
     private $badge;
     
+    
+    /**
+     * @var string
+     */
+    private $android_channel_id;
+    
     /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [])
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [] , string $android_channel_id = "")
     {
         $this->title = $title;
         $this->body = $body;
@@ -64,6 +70,7 @@ class Notification implements Request
         $this->badge = $badge;
         $this->tag = $tag;
         $this->subtitle = $subtitle;
+        $this->android_channel_id = $android_channel_id;
         
         if (!empty($data)) {
             $this->data = $data;
@@ -170,6 +177,18 @@ class Notification implements Request
         return $this;
     }
 
+     /**
+     * @param string $android_channel_id
+     *
+     * @return $this
+     */
+    public function setAndroidChannelID(string $android_channel_id): self
+    {
+        $this->android_channel_id = $android_channel_id;
+
+        return $this;
+    }
+    
     /**
      * @inheritdoc
      */
@@ -219,6 +238,8 @@ class Notification implements Request
         if ($this->badge>0) {
             $request['notification']['badge'] = $this->badge;
         }
+        if($this->android_channel_id != "")
+            $request['notification']['android_channel_id'] = $this->android_channel_id;
         
         if (!empty($this->data)) {
             $request['data'] = $this->data;
