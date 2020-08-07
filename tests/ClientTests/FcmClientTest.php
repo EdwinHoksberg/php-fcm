@@ -33,22 +33,39 @@ class FcmClientTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(['json_syntax' => 'correct'], $response);
     }
 
+    /** @test */
+    public function default_options_on_guzzle()
+    {
+        $client = new \Fcm\FcmClient('api_token_test', 'the_sender_id');
+
+        $this->assertArrayHasKey('http_errors', $client->options);
+        $this->assertSame($client->options["http_errors"], false);
+
+    }
+
+    /** @test */
+    public function non_default_options_on_guzzle()
+    {
+        $client = new \Fcm\FcmClient('api_token_test', 'the_sender_id', Array("http_errors" => true));
+
+        $this->assertArrayHasKey('http_errors', $client->options);
+        $this->assertSame($client->options["http_errors"], true);
+
+    }
 
     /** @test */
     public function can_set_options_on_guzzle()
     {
-        $client = new \Fcm\FcmClient('api_token_test', 'the_sender_id', Array("http_errors" => true) );
+        $client = new \Fcm\FcmClient('api_token_test', 'the_sender_id');
 
-        $options = $client
-            ->getGuzzleClient()
-            ->getConfig('options');
-
-        $this->assertArrayHasKey('Authorization', $headers);
-        $this->assertSame('key=api_token_test', $headers['Authorization']);
-
-        $client->setGuzzleClient( Array("http_errors" => false) );
+        $this->assertArrayHasKey('http_errors', $client->options);
+        $this->assertSame($client->options["http_errors"], false);
 
         $client->setGuzzleClient( Array("http_errors" => true) );
+        $this->assertSame($client->options["http_errors"], true);
+
+        $client->setGuzzleClient( Array("http_errors" => false) );
+        $this->assertSame($client->options["http_errors"], false);
     }
 
     /**
