@@ -35,7 +35,7 @@ class FcmClient
     /**
      * @var array
      */
-    private $options;
+    public $options;
 
     /**
      * @param string $apiToken
@@ -46,6 +46,12 @@ class FcmClient
     {
         $this->apiToken  = $apiToken;
         $this->senderId = $senderId;
+
+        if ( isset( $options["http_errors"] ) ) {
+            $options["http_errors"] = (bool)$options["http_errors"];
+        } else {
+            $options["http_errors"] = false;
+        }
         $this->options = $options;
     }
 
@@ -122,12 +128,6 @@ class FcmClient
      */
     public function getGuzzleClient(): Client
     {
-        if ( isset( $this->options["http_errors"] ) ) {
-            $this->options["http_errors"] = (bool)$this->options["http_errors"];
-        } else {
-            $this->options["http_errors"] = true;
-        }
-        
         // Create configuration array
         return new Client([
             'headers' => [
