@@ -61,10 +61,10 @@ class FcmClientTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('http_errors', $client->options);
         $this->assertSame($client->options["http_errors"], false);
 
-        $client->setGuzzleClient( Array("http_errors" => true) );
+        $client->setOptions( Array("http_errors" => true) );
         $this->assertSame($client->options["http_errors"], true);
 
-        $client->setGuzzleClient( Array("http_errors" => false) );
+        $client->setOptions( Array("http_errors" => false) );
         $this->assertSame($client->options["http_errors"], false);
     }
 
