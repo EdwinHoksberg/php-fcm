@@ -33,6 +33,24 @@ class FcmClientTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(['json_syntax' => 'correct'], $response);
     }
 
+
+    /** @test */
+    public function can_set_options_on_guzzle()
+    {
+        $client = new \Fcm\FcmClient('api_token_test', 'the_sender_id', Array("http_errors" => true) );
+
+        $options = $client
+            ->getGuzzleClient()
+            ->getConfig('options');
+
+        $this->assertArrayHasKey('Authorization', $headers);
+        $this->assertSame('key=api_token_test', $headers['Authorization']);
+
+        $client->setGuzzleClient( Array("http_errors" => false) );
+
+        $client->setGuzzleClient( Array("http_errors" => true) );
+    }
+
     /**
      * @test
      *

@@ -51,3 +51,4 @@ Read the :doc:`quickstart` for installation and using the project.
     message
     devicegroup
     topic
+    packageoptions
