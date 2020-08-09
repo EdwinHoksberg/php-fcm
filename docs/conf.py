@@ -19,13 +19,13 @@
 # -- Project information -----------------------------------------------------
 
 project = 'PHP-FCM'
-copyright = '2018, Edwin Hoksberg'
-author = 'Edwin Hoksberg'
+copyright = '2020, Edwin Hoksberg'
+author = 'EdwinHoksberg, Rolinger and AndyGaskell'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '1.2.0'
 
 
 # -- General configuration ---------------------------------------------------
