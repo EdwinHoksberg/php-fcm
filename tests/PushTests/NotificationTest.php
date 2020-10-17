@@ -459,10 +459,9 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $notification
             ->setTitle('Test title')
             ->addRecipient('device')
-            ->setClickAction('MAIN_ACTIVITY')
             ->addData('key', 'value');
 
-        $notification->setIcon('my icon');
+        $notification->setClickAction('MAIN_ACTIVITY');
 
         $expected = [
             'to' => 'device',
@@ -470,7 +469,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'title' => 'Test title',
                 'body'  => '',
                 'sound'  => '',
-                'icon'  => 'my icon',
+                'icon'  => '',
                 'color'  => '',
                 'tag'  => '',
                 'subtitle'  => '',
