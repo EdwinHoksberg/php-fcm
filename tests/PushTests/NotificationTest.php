@@ -452,4 +452,35 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $notification->getBody());
     }
 
+    /** @test */
+    public function it_generates_a_correct_notification_object_click_action()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->setClickAction('MAIN_ACTIVITY')
+            ->addData('key', 'value');
+
+        $notification->setIcon('my icon');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => 'my icon',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+                'click_action' => 'MAIN_ACTIVITY'
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
 }

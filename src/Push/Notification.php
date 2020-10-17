@@ -241,7 +241,7 @@ class Notification implements Request
         }
 
         if (!empty($this->click_action)) {
-            $request['click_action'] = $this->click_action;
+            $request['notification']['click_action'] = $this->click_action;
         }
         
         if (!empty($this->data)) {
