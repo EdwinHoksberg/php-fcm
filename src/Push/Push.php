@@ -2,6 +2,9 @@
 
 namespace Fcm\Push;
 
+use Fcm\Exception\NotificationException;
+
+
 trait Push
 {
     /**
