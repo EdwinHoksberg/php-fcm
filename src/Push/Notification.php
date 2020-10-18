@@ -48,13 +48,18 @@ class Notification implements Request
      * @var int
      */
     private $badge;
+
+    /**
+     * @var string
+     */
+    private $click_action;
     
     /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [])
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '')
     {
         $this->title = $title;
         $this->body = $body;
@@ -64,6 +69,10 @@ class Notification implements Request
         $this->badge = $badge;
         $this->tag = $tag;
         $this->subtitle = $subtitle;
+
+        if (!empty($click_action)) {
+            $this->click_action = $click_action;
+        }
         
         if (!empty($data)) {
             $this->data = $data;
@@ -171,6 +180,17 @@ class Notification implements Request
     }
 
     /**
+     * @param string $click_action
+     *
+     * @return $this
+     */
+    public function setClickAction(string $click_action): self {
+        $this->click_action = $click_action;
+
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getBody(): array
@@ -218,6 +238,10 @@ class Notification implements Request
         $request['notification']['subtitle'] = $this->subtitle;
         if ($this->badge>0) {
             $request['notification']['badge'] = $this->badge;
+        }
+
+        if (!empty($this->click_action)) {
+            $request['notification']['click_action'] = $this->click_action;
         }
         
         if (!empty($this->data)) {
