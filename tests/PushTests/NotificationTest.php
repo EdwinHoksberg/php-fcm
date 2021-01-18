@@ -65,6 +65,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $notification->getBody();
     }
 
+
     /** @test */
     public function it_can_generate_a_notification_for_multiple_recipients()
     {
@@ -165,6 +166,31 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
 
 
     /** @test */
+    public function it_can_generate_a_notification_with_no_data()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+        ];
+
+        $this->assertSame($expected, $notification->getBody());
+    }
+
+
+    /** @test */
     public function it_can_generate_a_notification_with_add_data_array()
     {
         $notification = new \Fcm\Push\Notification();
@@ -198,6 +224,24 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertSame($expected, $notification->getBody());
+    }
+
+
+    /**
+     * @test
+     *
+     * @expectedException \Fcm\Exception\NotificationException
+     * @expectedExceptionMessage Data must be an asscoiative array of ("key" => "value") pairs.
+     */
+    public function it_will_throw_an_exception_if_data_is_not_an_asscoiative_array()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addDataArray('array');
+
+        $notification->getBody();
     }
 
 
@@ -453,7 +497,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_generates_a_correct_notification_object_click_action()
+    public function it_generates_a_correct_notification_object_setting_click_action()
     {
         $notification = new \Fcm\Push\Notification();
         $notification
@@ -474,6 +518,34 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'tag'  => '',
                 'subtitle'  => '',
                 'click_action' => 'MAIN_ACTIVITY'
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
+
+    /** @test */
+    public function it_generates_a_correct_notification_object_no_click_action()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addData('key', 'value');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
             ],
             'data' => [
                 'key' => 'value',
