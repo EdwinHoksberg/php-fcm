@@ -12,7 +12,7 @@ class FcmServiceProvider extends ServiceProvider implements DeferrableProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/stubs/config.php' => config_path('php-fcm.php'),
+                __DIR__.'/stubs/config.php' => $this->app->configPath('php-fcm.php'),
             ], 'php-fcm');
         }
     }
@@ -21,12 +21,14 @@ class FcmServiceProvider extends ServiceProvider implements DeferrableProvider
     {
         $this->mergeConfigFrom(__DIR__.'/stubs/config.php', 'php-fcm');
 
-        $this->app->singleton(FcmClient::class, function () {
+        $this->app->singleton(FcmClient::class, function ($app) {
+            $config = $app->make('config');
+
             return new FcmClient(
-                config('php-fcm.key'), 
-                config('php-fcm.sender_id'),
+                $config->get('php-fcm.key'),
+                $config->get('php-fcm.sender_id'),
                 [
-                    'http_errors' => config('php-fcm.http_errors'),
+                    'http_errors' => $config->get('php-fcm.http_errors'),
                 ]
             );
         });

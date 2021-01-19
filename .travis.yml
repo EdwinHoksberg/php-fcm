@@ -13,6 +13,7 @@ matrix:
 
 install:
   - travis_retry composer install --no-interaction --no-suggest
+  - travis_retry composer require --no-interaction illuminate/support:^6.0 vlucas/phpdotenv:^3.3
 
 script:
   - mkdir -p build/logs
