@@ -10,18 +10,23 @@ The intention is to release a new version every 3 months, if code has changed in
 Creating a new release
 ======================
 
+New releases can be done via the github web interface at: https://github.com/EdwinHoksberg/php-fcm/releases/new 
+
+Current tags: https://github.com/EdwinHoksberg/php-fcm/tags
+
+Releases: https://github.com/EdwinHoksberg/php-fcm/releases
+
+Releases on packagist: https://packagist.org/packages/edwinhoksberg/php-fcm
+
 Create a tag: 
 
 `git tag v1.2.0`
 
 `git push origin v1.2.0`
 
-Current tags: https://github.com/EdwinHoksberg/php-fcm/tags
-
-
-
 
 Further reading...
+
 * https://getcomposer.org/doc/articles/versions.md
 
 

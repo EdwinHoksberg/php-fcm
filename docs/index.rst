@@ -52,3 +52,4 @@ Read the :doc:`quickstart` for installation and using the project.
     devicegroup
     topic
     packageoptions
+    maintainer
