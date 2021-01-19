@@ -16,7 +16,9 @@ install:
 
 script:
   - mkdir -p build/logs
-  - vendor/bin/phpunit -c phpunit.dist.xml --testdox
+  #- vendor/bin/phpunit -c phpunit.dist.xml --testdox
+  #XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text 
+  - XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.dist.xml --testdox
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls -v
