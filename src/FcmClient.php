@@ -108,6 +108,10 @@ class FcmClient
         // and concatinate it back together.
         $group = array_slice($camelCaseSplit, 0, -1);
         $group = ucwords(implode('', $group));
+        
+        if ($group == 'Laravel') {
+            throw new FcmClientException('Invalid magic method called: cannot instantiate Laravel classes');
+        }
 
         // The classname is always the last item in the group name.
         $class = ucwords(end($camelCaseSplit));
