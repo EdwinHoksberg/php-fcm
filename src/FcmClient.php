@@ -81,9 +81,13 @@ class FcmClient
         $url = $request->getUrl();
 
         // Create and send the request.
-        $response = $client->post($url, [
-            'json' => $request->getBody()
-        ]);
+        try {
+            $response = $client->post($url, [
+                'json' => $request->getBody()
+            ]);
+        } catch (GuzzleException $e) {
+            throw new FcmClientException('Failed to Connect: '.$e->getMessage());
+        }
 
         // Decode the response body from json to a plain php array.
         $body = json_decode($response->getBody()->getContents(), true);
