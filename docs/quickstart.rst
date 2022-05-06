@@ -14,7 +14,7 @@ This package is available on packagist, and can be installed with composer:
 Configuring a Firebase account
 ==============================
 
-This project uses Google Firebase for sending notifications, so we need to signup for an free account.
+This project uses Google Firebase for sending notifications, so we need to signup for a free account.
 A free account can store up to ~20 million messages, device groups and topics.
 
 #. Click `here <https://console.firebase.google.com/>`_ to go the firebase console page.
