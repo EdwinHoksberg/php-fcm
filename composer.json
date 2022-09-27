@@ -24,5 +24,8 @@
         "phpunit/phpunit": "^6.5",
         "mockery/mockery": "^1.0",
         "php-coveralls/php-coveralls": "^2.3"
+    },
+    "scripts": {
+        "test": ["XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.dist.xml"]
     }
 }
