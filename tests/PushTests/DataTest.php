@@ -20,28 +20,22 @@ class DataTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $data->getBody());
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Must minimaly specify a single recipient or topic.
-     */
+    /** @test */
     public function it_can_not_have_no_recipients_or_topics()
     {
+        $this->expectExceptionMessage("Must minimaly specify a single recipient or topic.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
         $data->addData('key', 'value');
 
         $data->getBody();
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Must either specify a recipient or topic, not more then one.
-     */
+    /** @test */
     public function it_can_not_have_a_recipient_and_topic()
     {
+        $this->expectExceptionMessage("Must either specify a recipient or topic, not more then one.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
         $data
             ->addRecipient('device')
@@ -51,14 +45,11 @@ class DataTest extends \PHPUnit\Framework\TestCase
         $data->getBody();
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Data should not be empty for a Data Notification.
-     */
+    /** @test */
     public function it_should_always_have_data_parameters()
     {
+        $this->expectExceptionMessage("Data should not be empty for a Data Notification.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
 
         $data->getBody();

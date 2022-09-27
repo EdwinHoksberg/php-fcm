@@ -32,14 +32,11 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('https://fcm.googleapis.com/fcm/send', $notification->getUrl());
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Must minimaly specify a single recipient or topic.
-     */
+    /** @test */
     public function it_can_not_have_no_recipients_or_topics()
     {
+        $this->expectExceptionMessage("Must minimaly specify a single recipient or topic.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $notification = new \Fcm\Push\Notification();
         $notification
             ->setTitle('Test title')
@@ -48,14 +45,11 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $notification->getBody();
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Must either specify a recipient or topic, not more then one.
-     */
+    /** @test */
     public function it_can_not_have_a_recipient_and_topic()
     {
+        $this->expectExceptionMessage("Must either specify a recipient or topic, not more then one.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $notification = new \Fcm\Push\Notification();
         $notification
             ->setTitle('Test title')
@@ -227,14 +221,11 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
     }
 
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\NotificationException
-     * @expectedExceptionMessage Data must be an asscoiative array of ("key" => "value") pairs.
-     */
+    /** @test */
     public function it_will_throw_an_exception_if_data_is_not_an_asscoiative_array()
     {
+        $this->expectExceptionMessage("Data must be an asscoiative array of (\"key\" => \"value\") pairs.");
+        $this->expectException(\Fcm\Exception\NotificationException::class);
         $notification = new \Fcm\Push\Notification();
         $notification
             ->setTitle('Test title')

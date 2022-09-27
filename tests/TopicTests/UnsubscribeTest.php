@@ -39,14 +39,11 @@ class UnsubscribeTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $unsubscribe->getBody());
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\TopicException
-     * @expectedExceptionMessage Device id is empty
-     */
+    /** @test */
     public function it_can_not_use_an_empty_deviceId()
     {
+        $this->expectExceptionMessage("Device id is empty");
+        $this->expectException(\Fcm\Exception\TopicException::class);
         $unsubscribe = new \Fcm\Topic\Unsubscribe('news');
         $unsubscribe->addDevice('');
     }
