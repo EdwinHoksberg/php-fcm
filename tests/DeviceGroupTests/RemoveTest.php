@@ -1,5 +1,7 @@
 <?php
 
+namespace DeviceGroupTests;
+
 class RemoveTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

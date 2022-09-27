@@ -1,5 +1,7 @@
 <?php
 
+namespace TopicTests;
+
 class UnsubscribeTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

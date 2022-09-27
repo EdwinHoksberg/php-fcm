@@ -1,5 +1,7 @@
 <?php
 
+namespace TopicTests;
+
 class SubscribeTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

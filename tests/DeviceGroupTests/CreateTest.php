@@ -1,5 +1,7 @@
 <?php
 
+namespace DeviceGroupTests;
+
 class CreateTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

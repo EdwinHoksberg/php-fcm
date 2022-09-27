@@ -1,5 +1,7 @@
 <?php
 
+namespace PushTests;
+
 class NotificationTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

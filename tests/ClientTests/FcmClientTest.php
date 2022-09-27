@@ -1,5 +1,9 @@
 <?php
 
+namespace ClientTests;
+
+use Mockery;
+
 class FcmClientTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

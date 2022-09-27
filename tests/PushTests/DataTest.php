@@ -1,5 +1,7 @@
 <?php
 
+namespace PushTests;
+
 class DataTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
