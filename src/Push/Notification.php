@@ -53,13 +53,18 @@ class Notification implements Request
      * @var string
      */
     private $click_action;
+
+    /**
+     * @var string
+     */
+    private $image;
     
     /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '', string $image = '')
     {
         $this->title = $title;
         $this->body = $body;
@@ -72,6 +77,10 @@ class Notification implements Request
 
         if (!empty($click_action)) {
             $this->click_action = $click_action;
+        }
+
+        if(!empty($image)) {
+            $this->image = $image
         }
         
         if (!empty($data)) {
@@ -191,6 +200,17 @@ class Notification implements Request
     }
 
     /**
+     * @param string $image
+     *
+     * @return $this
+     */
+    public function setImage(string $image): self {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getBody(): array
@@ -242,6 +262,10 @@ class Notification implements Request
 
         if (!empty($this->click_action)) {
             $request['notification']['click_action'] = $this->click_action;
+        }
+
+        if (!empty($this->image)) {
+            $request['notification']['image'] = $this->image;
         }
         
         if (!empty($this->data)) {
