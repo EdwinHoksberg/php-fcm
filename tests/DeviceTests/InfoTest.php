@@ -1,5 +1,7 @@
 <?php
 
+namespace DeviceTests;
+
 class InfoTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

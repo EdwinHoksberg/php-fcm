@@ -1,5 +1,7 @@
 <?php
 
+namespace DeviceGroupTests;
+
 class UpdateTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */

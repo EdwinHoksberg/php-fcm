@@ -1,5 +1,9 @@
 <?php
 
+namespace ClientTests;
+
+use Mockery;
+
 class FcmClientTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
@@ -68,14 +72,11 @@ class FcmClientTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($client->options["http_errors"], false);
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\FcmClientException
-     * @expectedExceptionMessage Failed to json decode response body: Syntax error
-     */
+    /** @test */
     public function it_throws_an_exception_if_invalid_json_was_returned()
     {
+        $this->expectExceptionMessage("Failed to json decode response body: Syntax error");
+        $this->expectException(\Fcm\Exception\FcmClientException::class);
         $client = Mockery::mock(\Fcm\FcmClient::class)->makePartial();
 
         $client
@@ -87,14 +88,11 @@ class FcmClientTest extends \PHPUnit\Framework\TestCase
         $client->send($info);
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Fcm\Exception\FcmClientException
-     * @expectedExceptionMessage Invalid magic method called: \Fcm\Fail\Test
-     */
+    /** @test */
     public function it_fails_when_calling_a_nonexisting_magic_method()
     {
+        $this->expectExceptionMessage("Invalid magic method called: \Fcm\Fail\Test");
+        $this->expectException(\Fcm\Exception\FcmClientException::class);
         $client = new \Fcm\FcmClient('', '');
 
         $client->failTest();

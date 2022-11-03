@@ -37,7 +37,7 @@ Read the documentation [here](https://php-fcm.readthedocs.io/en/latest/) or look
 ## Tests
 Run the unit tests with PHPUnit:
 ```bash
-vendor/bin/phpunit -c phpunit.dist.xml
+composer test
 ```
 Before the first time you run them, you may need to run:
 ```bash
