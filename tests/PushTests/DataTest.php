@@ -19,7 +19,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->getBody());
     }
 
     /** @test */
@@ -77,7 +77,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->getBody());
     }
 
     /** @test */
@@ -96,7 +96,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->getBody());
     }
 
     /** @test */
@@ -118,7 +118,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->getBody());
     }
 
     /** @test */
@@ -139,6 +139,6 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->getBody());
     }
 }

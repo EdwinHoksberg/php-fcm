@@ -195,39 +195,7 @@ class Notification implements Request
      */
     public function getBody(): array
     {
-        if (empty($this->recipients) && empty($this->topics)) {
-            throw new NotificationException('Must minimaly specify a single recipient or topic.');
-        }
-
-        if (!empty($this->recipients) && !empty($this->topics)) {
-            throw new NotificationException('Must either specify a recipient or topic, not more then one.');
-        }
-        /*
-        if (empty($this->data)) {
-            throw new NotificationException('Data should not be empty for a Data Notification.');
-        }
-        */
-        $request = [];
-
-        if (!empty($this->recipients)) {
-            if (\count($this->recipients) === 1) {
-                $request['to'] = current($this->recipients);
-            } else {
-                $request['registration_ids'] = $this->recipients;
-            }
-        }
-
-        if (!empty($this->topics)) {
-            $request['condition'] = array_reduce($this->topics, function ($carry, string $topic) {
-                $topicSyntax = "'%s' in topics";
-
-                if (end($this->topics) === $topic) {
-                    return $carry .= sprintf($topicSyntax, $topic);
-                }
-
-                return $carry .= sprintf($topicSyntax, $topic) . '||';
-            });
-        }
+        $request = $this->buildJsonPushBody();
 
         $request['notification']['title'] = $this->title;
         $request['notification']['body'] = $this->body;
@@ -244,9 +212,6 @@ class Notification implements Request
             $request['notification']['click_action'] = $this->click_action;
         }
         
-        if (!empty($this->data)) {
-            $request['data'] = $this->data;
-        }
-        return $request; 
+        return $request;
     }
 }

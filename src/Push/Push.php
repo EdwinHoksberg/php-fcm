@@ -94,4 +94,47 @@ trait Push
     {
         return 'https://fcm.googleapis.com/fcm/send';
     }
+
+    /**
+     * @return array JSON body with only the fields of the Push trait.
+     * @throws NotificationException When this object isn't valid.
+     */
+    protected function buildJsonPushBody(): array
+    {
+        if (empty($this->recipients) && empty($this->topics)) {
+            throw new NotificationException('Must minimaly specify a single recipient or topic.');
+        }
+
+        if (!empty($this->recipients) && !empty($this->topics)) {
+            throw new NotificationException('Must either specify a recipient or topic, not more then one.');
+        }
+
+        $request = [];
+
+        if (!empty($this->recipients)) {
+            if (\count($this->recipients) === 1) {
+                $request['to'] = current($this->recipients);
+            } else {
+                $request['registration_ids'] = $this->recipients;
+            }
+        }
+
+        if (!empty($this->topics)) {
+            $request['condition'] = array_reduce($this->topics, function ($carry, string $topic) {
+                $topicSyntax = "'%s' in topics";
+
+                if (end($this->topics) === $topic) {
+                    return $carry .= sprintf($topicSyntax, $topic);
+                }
+
+                return $carry .= sprintf($topicSyntax, $topic) . '||';
+            });
+        }
+
+        if (!empty($this->data)) {
+            $request['data'] = $this->data;
+        }
+
+        return $request;
+    }
 }

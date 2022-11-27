@@ -30,7 +30,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
         $this->assertSame('https://fcm.googleapis.com/fcm/send', $notification->getUrl());
     }
 
@@ -92,7 +92,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
     /** @test */
@@ -125,7 +125,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
     /** @test */
@@ -157,7 +157,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -182,7 +182,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -219,7 +219,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -281,7 +281,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -305,7 +305,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -335,7 +335,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -366,7 +366,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -396,7 +396,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -426,7 +426,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
     
 
@@ -456,7 +456,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -486,7 +486,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
     /** @test */
@@ -516,7 +516,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 
@@ -544,7 +544,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertSame($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->getBody());
     }
 
 }
