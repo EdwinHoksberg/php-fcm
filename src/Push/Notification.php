@@ -7,8 +7,8 @@ use Fcm\Request;
 
 class Notification implements Request
 {
-    use Push ;
-    
+    use Push;
+
     /**
      * @var string
      */
@@ -28,7 +28,7 @@ class Notification implements Request
      * @var string
      */
     private $icon;
-    
+
     /**
      * @var string
      */
@@ -37,8 +37,8 @@ class Notification implements Request
     /**
      * @var string
      */
-    private $tag;    
-    
+    private $tag;
+
     /**
      * @var string
      */
@@ -53,7 +53,7 @@ class Notification implements Request
      * @var string
      */
     private $click_action;
-    
+
     /**
      * @param string $title
      * @param string $body
@@ -73,11 +73,11 @@ class Notification implements Request
         if (!empty($click_action)) {
             $this->click_action = $click_action;
         }
-        
+
         if (!empty($data)) {
             $this->data = $data;
-        } 
-        
+        }
+
         if (!empty($recipient)) {
             $this->addRecipient($recipient);
         }
@@ -106,7 +106,7 @@ class Notification implements Request
 
         return $this;
     }
-    
+
     /**
      * @param string $sound
      *
@@ -117,8 +117,8 @@ class Notification implements Request
         $this->sound = $sound;
 
         return $this;
-    } 
-    
+    }
+
     /**
      * @param string $icon
      *
@@ -142,7 +142,7 @@ class Notification implements Request
 
         return $this;
     }
-    
+
     /**
      * @param string badge
      *
@@ -154,7 +154,7 @@ class Notification implements Request
 
         return $this;
     }
-    
+
     /**
      * @param string $tag
      *
@@ -184,7 +184,8 @@ class Notification implements Request
      *
      * @return $this
      */
-    public function setClickAction(string $click_action): self {
+    public function setClickAction(string $click_action): self
+    {
         $this->click_action = $click_action;
 
         return $this;
@@ -204,14 +205,14 @@ class Notification implements Request
         $request['notification']['color'] = $this->color;
         $request['notification']['tag'] = $this->tag;
         $request['notification']['subtitle'] = $this->subtitle;
-        if ($this->badge>0) {
+        if ($this->badge > 0) {
             $request['notification']['badge'] = $this->badge;
         }
 
         if (!empty($this->click_action)) {
             $request['notification']['click_action'] = $this->click_action;
         }
-        
+
         return $request;
     }
 }

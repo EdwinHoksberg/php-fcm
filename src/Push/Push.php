@@ -57,7 +57,7 @@ trait Push
 
         return $this;
     }
-    
+
     /**
      * @param string $name
      * @param mixed $value
@@ -67,12 +67,12 @@ trait Push
     public function addDataArray($dataArray): self
     {
         if (is_array($dataArray)) {
-            $this->data = array_merge($this->data, $dataArray) ;
+            $this->data = array_merge($this->data, $dataArray);
         } else {
-            throw new NotificationException('Data must be an asscoiative array of ("key" => "value") pairs.');        
+            throw new NotificationException('Data must be an asscoiative array of ("key" => "value") pairs.');
         }
         return $this;
-    }    
+    }
 
     /**
      * @param string $name

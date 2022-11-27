@@ -135,7 +135,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             'to' => 'device_id',
             'data' => [
                 'sample' => 'example',
-                'my_name'  => 'john doe',
+                'my_name' => 'john doe',
             ],
         ];
 
