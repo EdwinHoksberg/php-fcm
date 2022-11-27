@@ -7,6 +7,9 @@ use Fcm\Request;
 
 abstract class Push implements Request
 {
+    const PRIORITY_HIGH = 'high';
+    const PRIORITY_NORMAL = 'normal';
+
     /**
      * @var array
      */
@@ -21,6 +24,11 @@ abstract class Push implements Request
      * @var array
      */
     protected $data = [];
+
+    /**
+     * @var string|null
+     */
+    protected $priority = null;
 
     /**
      * @var string|null
@@ -91,6 +99,18 @@ abstract class Push implements Request
     }
 
     /**
+     * @see https://firebase.google.com/docs/cloud-messaging/concept-options#setting-the-priority-of-a-message
+     * @param string $priority
+     *
+     * @return self
+     */
+    public function setPriority(string $priority): self
+    {
+        $this->priority = $priority;
+        return $this;
+    }
+
+    /**
      * @see https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages
      * @param string $collapseKey
      *
@@ -141,6 +161,10 @@ abstract class Push implements Request
 
         if (!empty($this->data)) {
             $request['data'] = $this->data;
+        }
+
+        if (!empty($this->priority)) {
+            $request['priority'] = $this->priority;
         }
 
         if (!empty($this->collapseKey)) {

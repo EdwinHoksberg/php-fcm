@@ -122,6 +122,26 @@ class DataTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
+    public function it_can_generate_a_data_push_with_priority()
+    {
+        $data = new \Fcm\Push\Data();
+        $data
+            ->addRecipient('device_1')
+            ->addData('key', 'value')
+            ->setPriority(\Fcm\Push\Data::PRIORITY_HIGH);
+
+        $expected = [
+            'to' => 'device_1',
+            'data' => [
+                'key' => 'value',
+            ],
+            'priority' => 'high',
+        ];
+
+        $this->assertEquals($expected, $data->buildJsonBody());
+    }
+
+    /** @test */
     public function it_can_generate_a_data_push_with_collapse_key()
     {
         $data = new \Fcm\Push\Data();
