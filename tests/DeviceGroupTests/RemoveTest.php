@@ -19,7 +19,7 @@ class RemoveTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $remove->getBody());
+        $this->assertSame($expected, $remove->buildJsonBody());
     }
 
     /** @test */
@@ -43,7 +43,7 @@ class RemoveTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $remove->getBody());
+        $this->assertSame($expected, $remove->buildJsonBody());
     }
 
     /** @test */
@@ -66,6 +66,6 @@ class RemoveTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $remove->getBody());
+        $this->assertSame($expected, $remove->buildJsonBody());
     }
 }

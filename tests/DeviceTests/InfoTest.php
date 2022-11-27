@@ -9,12 +9,12 @@ class InfoTest extends \PHPUnit\Framework\TestCase
     {
         $info = new \Fcm\Device\Info('device_id');
 
-        $this->assertSame([], $info->getBody());
+        $this->assertSame([], $info->buildJsonBody());
         $this->assertSame('https://iid.googleapis.com/iid/info/device_id', $info->getUrl());
 
         $info = new \Fcm\Device\Info('device_id_new', true);
 
-        $this->assertSame([], $info->getBody());
+        $this->assertSame([], $info->buildJsonBody());
         $this->assertSame('https://iid.googleapis.com/iid/info/device_id_new?details=true', $info->getUrl());
     }
 

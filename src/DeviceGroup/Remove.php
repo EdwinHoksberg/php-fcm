@@ -36,7 +36,7 @@ class Remove implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         return [
             'operation' => 'remove',

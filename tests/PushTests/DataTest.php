@@ -19,24 +19,24 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
     public function it_can_not_have_no_recipients_or_topics()
     {
-        $this->expectExceptionMessage("Must minimaly specify a single recipient or topic.");
+        $this->expectExceptionMessage("Must specify at least one recipient or topic.");
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
         $data->addData('key', 'value');
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
     public function it_can_not_have_a_recipient_and_topic()
     {
-        $this->expectExceptionMessage("Must either specify a recipient or topic, not more then one.");
+        $this->expectExceptionMessage("Must not specify both a recipient and a topic.");
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
         $data
@@ -44,7 +44,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ->addTopic('topic')
             ->addData('key', 'value');
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
@@ -77,7 +77,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -96,7 +96,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -118,7 +118,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -135,10 +135,10 @@ class DataTest extends \PHPUnit\Framework\TestCase
             'to' => 'device_id',
             'data' => [
                 'sample' => 'example',
-                'my_name'  => 'john doe',
+                'my_name' => 'john doe',
             ],
         ];
 
-        $this->assertSame($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 }

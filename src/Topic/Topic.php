@@ -15,6 +15,7 @@ trait Topic
      * @param string|array $deviceId
      *
      * @return self
+     * @throws TopicException When the $deviceId is empty.
      */
     public function addDevice($deviceId): self
     {
