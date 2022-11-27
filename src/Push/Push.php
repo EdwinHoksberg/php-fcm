@@ -23,17 +23,16 @@ trait Push
 
     /**
      * @param string|array $iidToken
-     *
      * @return self
      */
     public function addRecipient($iidToken): self
     {
         if (\is_string($iidToken)) {
             $this->recipients[] = $iidToken;
-        }
-
-        if (\is_array($iidToken)) {
-            $this->recipients = array_merge($this->recipients, $iidToken);
+        } else if (\is_array($iidToken)) {
+            $this->recipients = array_merge($this->recipients, array_values($iidToken));
+        } else {
+            throw new \InvalidArgumentException('iidToken must be a string or an array of strings');
         }
 
         return $this;
@@ -111,7 +110,7 @@ trait Push
 
         if (!empty($this->recipients)) {
             if (\count($this->recipients) === 1) {
-                $request['to'] = current($this->recipients);
+                $request['to'] = $this->recipients[0];
             } else {
                 $request['registration_ids'] = $this->recipients;
             }
