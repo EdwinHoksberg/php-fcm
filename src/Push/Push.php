@@ -3,23 +3,24 @@
 namespace Fcm\Push;
 
 use Fcm\Exception\NotificationException;
+use Fcm\Request;
 
-trait Push
+abstract class Push implements Request
 {
     /**
      * @var array
      */
-    private $recipients = [];
+    protected $recipients = [];
 
     /**
      * @var array
      */
-    private $topics = [];
+    protected $topics = [];
 
     /**
      * @var array
      */
-    private $data = [];
+    protected $data = [];
 
     /**
      * @param string|array $iidToken
@@ -75,7 +76,7 @@ trait Push
      * @param string $name
      * @param mixed $value
      *
-     * @return Push
+     * @return self
      */
     public function addData($name, $value): self
     {
@@ -93,10 +94,9 @@ trait Push
     }
 
     /**
-     * @return array JSON body with only the fields of the Push trait.
-     * @throws NotificationException When this object isn't valid.
+     * @inheritdoc
      */
-    protected function buildJsonPushBody(): array
+    public function buildJsonBody(): array
     {
         if (empty($this->recipients) && empty($this->topics)) {
             throw new NotificationException('Must specify at least one recipient or topic.');

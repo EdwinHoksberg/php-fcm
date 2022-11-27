@@ -2,12 +2,8 @@
 
 namespace Fcm\Push;
 
-use Fcm\Request;
-
-class Notification implements Request
+class Notification extends Push
 {
-    use Push;
-
     /**
      * @var string
      */
@@ -190,7 +186,7 @@ class Notification implements Request
      */
     public function buildJsonBody(): array
     {
-        $request = $this->buildJsonPushBody();
+        $request = parent::buildJsonBody();
 
         $request['notification']['title'] = $this->title;
         $request['notification']['body'] = $this->body;
