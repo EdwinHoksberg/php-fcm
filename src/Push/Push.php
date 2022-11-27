@@ -58,10 +58,9 @@ trait Push
     }
 
     /**
-     * @param string $name
-     * @param mixed $value
-     *
-     * @return Push
+     * @param $dataArray
+     * @return self
+     * @throws NotificationException
      */
     public function addDataArray($dataArray): self
     {

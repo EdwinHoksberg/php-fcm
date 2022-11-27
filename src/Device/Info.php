@@ -31,7 +31,7 @@ class Info implements Request
      */
     public function getUrl(): string
     {
-        $url = "https://iid.googleapis.com/iid/info/{$this->deviceId}";
+        $url = "https://iid.googleapis.com/iid/info/$this->deviceId";
 
         if ($this->details) {
             $url .= '?details=true';

@@ -2,7 +2,6 @@
 
 namespace Fcm\Push;
 
-use Fcm\Exception\NotificationException;
 use Fcm\Request;
 
 class Notification implements Request
@@ -54,11 +53,6 @@ class Notification implements Request
      */
     private $click_action;
 
-    /**
-     * @param string $title
-     * @param string $body
-     * @param string $recipient
-     */
     public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '')
     {
         $this->title = $title;
@@ -144,7 +138,7 @@ class Notification implements Request
     }
 
     /**
-     * @param string badge
+     * @param int $badge
      *
      * @return $this
      */
