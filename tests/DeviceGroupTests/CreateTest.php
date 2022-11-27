@@ -18,7 +18,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $create->getBody());
+        $this->assertSame($expected, $create->buildJsonBody());
         $this->assertSame('https://android.googleapis.com/gcm/notification', $create->getUrl());
     }
 
@@ -42,7 +42,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $create->getBody());
+        $this->assertSame($expected, $create->buildJsonBody());
     }
 
     /** @test */
@@ -60,6 +60,6 @@ class CreateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $create->getBody());
+        $this->assertSame($expected, $create->buildJsonBody());
     }
 }
