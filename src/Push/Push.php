@@ -117,15 +117,9 @@ trait Push
         }
 
         if (!empty($this->topics)) {
-            $request['condition'] = array_reduce($this->topics, function ($carry, string $topic) {
-                $topicSyntax = "'%s' in topics";
-
-                if (end($this->topics) === $topic) {
-                    return $carry .= sprintf($topicSyntax, $topic);
-                }
-
-                return $carry .= sprintf($topicSyntax, $topic) . '||';
-            });
+            $request['condition'] = implode('||', array_map(function (string $topic) {
+                return sprintf("'%s' in topics", $topic);
+            }, $this->topics));
         }
 
         if (!empty($this->data)) {
