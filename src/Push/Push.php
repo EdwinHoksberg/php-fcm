@@ -4,7 +4,6 @@ namespace Fcm\Push;
 
 use Fcm\Exception\NotificationException;
 
-
 trait Push
 {
     /**
@@ -102,11 +101,11 @@ trait Push
     protected function buildJsonPushBody(): array
     {
         if (empty($this->recipients) && empty($this->topics)) {
-            throw new NotificationException('Must minimaly specify a single recipient or topic.');
+            throw new NotificationException('Must specify at least one recipient or topic.');
         }
 
         if (!empty($this->recipients) && !empty($this->topics)) {
-            throw new NotificationException('Must either specify a recipient or topic, not more then one.');
+            throw new NotificationException('Must not specify both a recipient and a topic.');
         }
 
         $request = [];

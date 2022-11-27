@@ -37,7 +37,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
     /** @test */
     public function it_can_not_have_no_recipients_or_topics()
     {
-        $this->expectExceptionMessage("Must minimaly specify a single recipient or topic.");
+        $this->expectExceptionMessage("Must specify at least one recipient or topic.");
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $notification = new \Fcm\Push\Notification();
         $notification
@@ -50,7 +50,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
     /** @test */
     public function it_can_not_have_a_recipient_and_topic()
     {
-        $this->expectExceptionMessage("Must either specify a recipient or topic, not more then one.");
+        $this->expectExceptionMessage("Must not specify both a recipient and a topic.");
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $notification = new \Fcm\Push\Notification();
         $notification
