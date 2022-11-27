@@ -284,6 +284,33 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
+    /** @test */
+    public function it_can_generate_a_notification_with_collapse_key()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->setBody('A small body as an example')
+            ->addRecipient('device_1')
+            ->setCollapseKey('collapsekeyvalue');
+
+        $expected = [
+            'to' => 'device_1',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => 'A small body as an example',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'collapse_key' => 'collapsekeyvalue',
+        ];
+
+        $this->assertEquals($expected, $notification->buildJsonBody());
+        $this->assertSame('https://fcm.googleapis.com/fcm/send', $notification->getUrl());
+    }
 
     /** @test */
     public function it_can_generate_a_quick_object_from_magic_method()

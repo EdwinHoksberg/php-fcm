@@ -23,6 +23,11 @@ abstract class Push implements Request
     protected $data = [];
 
     /**
+     * @var string|null
+     */
+    protected $collapseKey = null;
+
+    /**
      * @param string|array $iidToken
      * @return self
      */
@@ -86,6 +91,18 @@ abstract class Push implements Request
     }
 
     /**
+     * @see https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages
+     * @param string $collapseKey
+     *
+     * @return self
+     */
+    public function setCollapseKey(string $collapseKey): self
+    {
+        $this->collapseKey = $collapseKey;
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getUrl(): string
@@ -124,6 +141,10 @@ abstract class Push implements Request
 
         if (!empty($this->data)) {
             $request['data'] = $this->data;
+        }
+
+        if (!empty($this->collapseKey)) {
+            $request['collapse_key'] = $this->collapseKey;
         }
 
         return $request;
