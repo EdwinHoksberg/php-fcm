@@ -17,7 +17,7 @@ class SubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $subscribe->getBody());
+        $this->assertSame($expected, $subscribe->buildJsonBody());
         $this->assertSame('https://iid.googleapis.com/iid/v1:batchAdd', $subscribe->getUrl());
     }
 
@@ -38,7 +38,7 @@ class SubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $subscribe->getBody());
+        $this->assertSame($expected, $subscribe->buildJsonBody());
     }
 
     /** @test */
@@ -64,6 +64,6 @@ class SubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $subscribe->getBody());
+        $this->assertSame($expected, $subscribe->buildJsonBody());
     }
 }

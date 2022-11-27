@@ -37,7 +37,7 @@ class Subscribe implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         return [
             'to' => "/topics/{$this->topicName}",

@@ -27,7 +27,7 @@ class Data implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         if (empty($this->data)) {
             throw new NotificationException('Data should not be empty for a Data Notification.');

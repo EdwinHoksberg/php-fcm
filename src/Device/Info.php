@@ -43,7 +43,7 @@ class Info implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         return [];
     }

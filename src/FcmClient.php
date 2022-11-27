@@ -4,6 +4,7 @@ namespace Fcm;
 
 use Fcm\Device\Info;
 use Fcm\Exception\FcmClientException;
+use Fcm\Exception\NotificationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use ReflectionClass;
@@ -71,6 +72,7 @@ class FcmClient
     /**
      * @param Request $request
      * @return array The response body received from the FCM API, as an associative array.
+     * @throws NotificationException When the given request isn't valid.
      * @throws FcmClientException When the sending failed.
      */
     public function send(Request $request): array
@@ -84,7 +86,7 @@ class FcmClient
         // Create and send the request.
         try {
             $response = $client->post($url, [
-                'json' => $request->getBody()
+                'json' => $request->buildJsonBody()
             ]);
         } catch (GuzzleException $e) {
             throw new FcmClientException('Failed to Connect: '.$e->getMessage());

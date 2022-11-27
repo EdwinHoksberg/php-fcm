@@ -19,7 +19,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -30,7 +30,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
         $data = new \Fcm\Push\Data();
         $data->addData('key', 'value');
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
@@ -44,7 +44,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ->addTopic('topic')
             ->addData('key', 'value');
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Fcm\Exception\NotificationException::class);
         $data = new \Fcm\Push\Data();
 
-        $data->getBody();
+        $data->buildJsonBody();
     }
 
     /** @test */
@@ -77,7 +77,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -96,7 +96,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -118,7 +118,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 
     /** @test */
@@ -139,6 +139,6 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $data->getBody());
+        $this->assertEquals($expected, $data->buildJsonBody());
     }
 }

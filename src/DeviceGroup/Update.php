@@ -36,7 +36,7 @@ class Update implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         return [
             'operation' => 'add',

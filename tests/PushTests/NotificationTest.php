@@ -30,7 +30,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
         $this->assertSame('https://fcm.googleapis.com/fcm/send', $notification->getUrl());
     }
 
@@ -44,7 +44,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ->setTitle('Test title')
             ->setBody('A small body as an example');
 
-        $notification->getBody();
+        $notification->buildJsonBody();
     }
 
     /** @test */
@@ -58,7 +58,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ->addRecipient('device')
             ->addTopic('topic');
 
-        $notification->getBody();
+        $notification->buildJsonBody();
     }
 
 
@@ -92,7 +92,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
     /** @test */
@@ -125,7 +125,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
     /** @test */
@@ -157,7 +157,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -182,7 +182,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -219,7 +219,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -234,7 +234,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ->addRecipient('device')
             ->addDataArray('array');
 
-        $notification->getBody();
+        $notification->buildJsonBody();
     }
 
 
@@ -281,7 +281,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -305,7 +305,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -335,7 +335,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -366,7 +366,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -396,7 +396,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -426,7 +426,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -456,7 +456,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -486,7 +486,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
     /** @test */
@@ -516,7 +516,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 
@@ -544,7 +544,7 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
                 'key' => 'value',
             ],
         ];
-        $this->assertEquals($expected, $notification->getBody());
+        $this->assertEquals($expected, $notification->buildJsonBody());
     }
 
 }
