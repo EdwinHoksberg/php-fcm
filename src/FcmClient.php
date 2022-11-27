@@ -5,6 +5,7 @@ namespace Fcm;
 use Fcm\Device\Info;
 use Fcm\Exception\FcmClientException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use ReflectionClass;
 
 /**
@@ -69,8 +70,8 @@ class FcmClient
 
     /**
      * @param Request $request
-     *
-     * @return array
+     * @return array The response body received from the FCM API, as an associative array.
+     * @throws FcmClientException When the sending failed.
      */
     public function send(Request $request): array
     {
