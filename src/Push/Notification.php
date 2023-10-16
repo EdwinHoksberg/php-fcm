@@ -53,13 +53,18 @@ class Notification implements Request
      * @var string
      */
     private $click_action;
-    
+
+    /**
+     * @var string|null
+     */
+    private $image_url;
+
     /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '')
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '', ?string $image_url = null)
     {
         $this->title = $title;
         $this->body = $body;
@@ -69,6 +74,7 @@ class Notification implements Request
         $this->badge = $badge;
         $this->tag = $tag;
         $this->subtitle = $subtitle;
+        $this->image_url = $image_url;
 
         if (!empty($click_action)) {
             $this->click_action = $click_action;
@@ -243,10 +249,28 @@ class Notification implements Request
         if (!empty($this->click_action)) {
             $request['notification']['click_action'] = $this->click_action;
         }
-        
+        if ($this->image_url) {
+            $request['notification']['image'] = $this->image_url;
+        }
         if (!empty($this->data)) {
             $request['data'] = $this->data;
         }
-        return $request; 
+        return $request;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageUrl(): ?string
+    {
+        return $this->image_url;
+    }
+
+    /**
+     * @param string|null $image_url
+     */
+    public function setImageUrl(?string $image_url): void
+    {
+        $this->image_url = $image_url;
     }
 }
