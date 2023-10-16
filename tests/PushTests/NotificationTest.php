@@ -547,4 +547,60 @@ class NotificationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $notification->getBody());
     }
 
+    /** @test */
+    public function it_generates_a_correct_notification_object_setting_image_url()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addData('key', 'value')
+            ->setImageUrl('https://example.com/some-photo.png');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+                'image' => 'https://example.com/some-photo.png',
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
+    /** @test */
+    public function it_generates_a_correct_notification_object_no_image_url()
+    {
+        $notification = new \Fcm\Push\Notification();
+        $notification
+            ->setTitle('Test title')
+            ->addRecipient('device')
+            ->addData('key', 'value');
+
+        $expected = [
+            'to' => 'device',
+            'notification' => [
+                'title' => 'Test title',
+                'body'  => '',
+                'sound'  => '',
+                'icon'  => '',
+                'color'  => '',
+                'tag'  => '',
+                'subtitle'  => '',
+            ],
+            'data' => [
+                'key' => 'value',
+            ],
+        ];
+        $this->assertSame($expected, $notification->getBody());
+    }
+
 }
