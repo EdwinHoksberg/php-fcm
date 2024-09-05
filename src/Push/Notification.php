@@ -58,13 +58,19 @@ class Notification implements Request
      * @var string|null
      */
     private $image_url;
+    
+    
+    /**
+     * @var string
+     */
+    private $android_channel_id;
 
     /**
      * @param string $title
      * @param string $body
      * @param string $recipient
      */
-    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '', string $image_url = null)
+    public function __construct(string $title = '', string $body = '', string $recipient = '', string $sound = '', string $icon = '', string $color = '', int $badge = 0, string $tag = '', string $subtitle = '', array $data = [], string $click_action = '', string $image_url = null , string $android_channel_id = "")
     {
         $this->title = $title;
         $this->body = $body;
@@ -79,6 +85,7 @@ class Notification implements Request
         if (!empty($click_action)) {
             $this->click_action = $click_action;
         }
+        $this->android_channel_id = $android_channel_id;
         
         if (!empty($data)) {
             $this->data = $data;
@@ -196,6 +203,18 @@ class Notification implements Request
         return $this;
     }
 
+     /**
+     * @param string $android_channel_id
+     *
+     * @return $this
+     */
+    public function setAndroidChannelID(string $android_channel_id): self
+    {
+        $this->android_channel_id = $android_channel_id;
+
+        return $this;
+    }
+    
     /**
      * @inheritdoc
      */
@@ -245,6 +264,8 @@ class Notification implements Request
         if ($this->badge>0) {
             $request['notification']['badge'] = $this->badge;
         }
+        if($this->android_channel_id != "")
+            $request['notification']['android_channel_id'] = $this->android_channel_id;
 
         if (!empty($this->click_action)) {
             $request['notification']['click_action'] = $this->click_action;
