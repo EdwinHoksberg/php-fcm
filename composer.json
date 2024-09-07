@@ -27,6 +27,9 @@
         "php-coveralls/php-coveralls": "^2.5"
     },
     "scripts": {
-        "test": ["XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.dist.xml"]
+        "test": ["vendor/bin/phpunit -c phpunit.dist.xml"]
+    },
+    "scripts-descriptions": {
+        "test" : "Set PHP.ini xdebug.mode=coverage (windows) OR set 'test':['XMODE_DEBUG=coverage vendor/bin/phpunit ...'] (linux)"
     }
 }

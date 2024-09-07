@@ -44,5 +44,27 @@ Before the first time you run them, you may need to run:
 composer install
 ```
 
+## Windows TESTING
+For local Windows Testing, you will need to install xdebug and add
+```php.ini
+zend_extension=xdebug
+xdebug.mode=coverage
+```
+
+and set composer.json scripts line to:
+```
+    "scripts": {
+        "test": ["vendor/bin/phpunit -c phpunit.dist.xml"]
+    },
+```
+
+## xUX TESTING:
+For local xUX or online github/codeforce testing, in composer.json set scripts line to:
+```
+    "scripts": {
+        "test": ["XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.dist.xml"]
+    },
+```
+
 ## License
 [MIT](LICENSE.md)
