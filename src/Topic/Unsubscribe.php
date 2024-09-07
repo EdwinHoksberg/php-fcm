@@ -2,6 +2,7 @@
 
 namespace Fcm\Topic;
 
+use Fcm\Exception\TopicException;
 use Fcm\Request;
 
 class Unsubscribe implements Request
@@ -16,6 +17,7 @@ class Unsubscribe implements Request
     /**
      * @param string $topicName
      * @param string $deviceId
+     * @throws TopicException When the $deviceId is empty.
      */
     public function __construct(string $topicName, string $deviceId = '')
     {
@@ -37,10 +39,10 @@ class Unsubscribe implements Request
     /**
      * @inheritdoc
      */
-    public function getBody(): array
+    public function buildJsonBody(): array
     {
         return [
-            'to' => "/topics/{$this->topicName}",
+            'to' => "/topics/$this->topicName",
             'registration_tokens' => $this->devices,
         ];
     }

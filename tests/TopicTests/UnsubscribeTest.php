@@ -17,7 +17,7 @@ class UnsubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $unsubscribe->getBody());
+        $this->assertSame($expected, $unsubscribe->buildJsonBody());
         $this->assertSame('https://iid.googleapis.com/iid/v1:batchRemove', $unsubscribe->getUrl());
     }
 
@@ -38,7 +38,7 @@ class UnsubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $unsubscribe->getBody());
+        $this->assertSame($expected, $unsubscribe->buildJsonBody());
     }
 
     /** @test */
@@ -64,6 +64,6 @@ class UnsubscribeTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $this->assertSame($expected, $unsubscribe->getBody());
+        $this->assertSame($expected, $unsubscribe->buildJsonBody());
     }
 }

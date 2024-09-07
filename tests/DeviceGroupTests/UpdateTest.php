@@ -19,7 +19,7 @@ class UpdateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $update->getBody());
+        $this->assertSame($expected, $update->buildJsonBody());
     }
 
     /** @test */
@@ -43,7 +43,7 @@ class UpdateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $update->getBody());
+        $this->assertSame($expected, $update->buildJsonBody());
     }
 
     /** @test */
@@ -66,6 +66,6 @@ class UpdateTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $this->assertSame($expected, $update->getBody());
+        $this->assertSame($expected, $update->buildJsonBody());
     }
 }
