@@ -3,12 +3,9 @@
 namespace Fcm\Push;
 
 use Fcm\Exception\NotificationException;
-use Fcm\Request;
 
-class Data implements Request
+class Data extends Push
 {
-    use Push;
-
     /**
      * @param array $data
      * @param string $recipient
@@ -33,6 +30,6 @@ class Data implements Request
             throw new NotificationException('Data should not be empty for a Data Notification.');
         }
 
-        return $this->buildJsonPushBody();
+        return parent::buildJsonBody();
     }
 }

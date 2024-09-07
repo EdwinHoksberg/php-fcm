@@ -3,23 +3,37 @@
 namespace Fcm\Push;
 
 use Fcm\Exception\NotificationException;
+use Fcm\Request;
 
-trait Push
+abstract class Push implements Request
 {
-    /**
-     * @var array
-     */
-    private $recipients = [];
+    const PRIORITY_HIGH = 'high';
+    const PRIORITY_NORMAL = 'normal';
 
     /**
      * @var array
      */
-    private $topics = [];
+    protected $recipients = [];
 
     /**
      * @var array
      */
-    private $data = [];
+    protected $topics = [];
+
+    /**
+     * @var array
+     */
+    protected $data = [];
+
+    /**
+     * @var string|null
+     */
+    protected $priority = null;
+
+    /**
+     * @var string|null
+     */
+    protected $collapseKey = null;
 
     /**
      * @param string|array $iidToken
@@ -75,12 +89,36 @@ trait Push
      * @param string $name
      * @param mixed $value
      *
-     * @return Push
+     * @return self
      */
     public function addData($name, $value): self
     {
         $this->data[$name] = $value;
 
+        return $this;
+    }
+
+    /**
+     * @see https://firebase.google.com/docs/cloud-messaging/concept-options#setting-the-priority-of-a-message
+     * @param string $priority
+     *
+     * @return self
+     */
+    public function setPriority(string $priority): self
+    {
+        $this->priority = $priority;
+        return $this;
+    }
+
+    /**
+     * @see https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages
+     * @param string $collapseKey
+     *
+     * @return self
+     */
+    public function setCollapseKey(string $collapseKey): self
+    {
+        $this->collapseKey = $collapseKey;
         return $this;
     }
 
@@ -93,10 +131,9 @@ trait Push
     }
 
     /**
-     * @return array JSON body with only the fields of the Push trait.
-     * @throws NotificationException When this object isn't valid.
+     * @inheritdoc
      */
-    protected function buildJsonPushBody(): array
+    public function buildJsonBody(): array
     {
         if (empty($this->recipients) && empty($this->topics)) {
             throw new NotificationException('Must specify at least one recipient or topic.');
@@ -124,6 +161,14 @@ trait Push
 
         if (!empty($this->data)) {
             $request['data'] = $this->data;
+        }
+
+        if (!empty($this->priority)) {
+            $request['priority'] = $this->priority;
+        }
+
+        if (!empty($this->collapseKey)) {
+            $request['collapse_key'] = $this->collapseKey;
         }
 
         return $request;
